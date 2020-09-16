@@ -1,5 +1,5 @@
 n1 = int(input())
-action = str(input())
+action = input()
 n2 = int(input())
 if action == "+":
     print(n1 + n2)

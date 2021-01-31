@@ -1,6 +1,7 @@
 import random
 import time
 from statistics import mean, variance
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -27,11 +28,11 @@ def monkey_sort(lst):
 
 
 n = 10
-x = np.zeros(n-1)
-y = np.zeros(n-1)
+x = np.zeros(n - 1)
+y = np.zeros(n - 1)
 
 # Time of monkey sort vs Length of random list
-for i in range(2, n+1):
+for i in range(2, n + 1):
     duration = np.zeros(100)
     for rep in range(100):
         rd_list = random_list(i, i)
@@ -39,8 +40,8 @@ for i in range(2, n+1):
         sorted_list = monkey_sort(rd_list)
         finish_time = time.time() - start_time
         duration[rep] = finish_time
-    x[i-2] = i
-    y[i-2] = np.mean(duration)
+    x[i - 2] = i
+    y[i - 2] = np.mean(duration)
     yerr = np.var(duration)
     plt.errorbar(i, np.mean(duration), yerr=yerr, capsize=3, ecolor='green')
 plt.scatter(x, y)

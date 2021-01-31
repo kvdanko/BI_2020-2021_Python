@@ -1,6 +1,7 @@
 import random
-import numpy
+
 import matplotlib.pyplot as plt
+import numpy
 
 # Three corners of an equilateral triangle
 corner = [(0, 0), (0.5, 0.5), (1, 0)]

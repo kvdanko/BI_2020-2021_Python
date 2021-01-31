@@ -8,6 +8,7 @@ for word in text:
         continue
     else:
         letter_list = list(word)
-        new_word = random.sample(letter_list[1:-1], len(letter_list[1:-1])) # Shuffle all letters except of the first and the last
+        # Shuffle all letters except of the first and the last
+        new_word = random.sample(letter_list[1:-1], len(letter_list[1:-1]))
         new_text.append(letter_list[0] + ''.join(new_word) + letter_list[-1])
 print(' '.join(new_text))

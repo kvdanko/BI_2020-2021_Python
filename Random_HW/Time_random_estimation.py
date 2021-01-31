@@ -1,7 +1,8 @@
 import random
+import time
+
 import matplotlib.pyplot as plt
 import numpy as np
-import time
 
 n = 10
 y_numpy = np.zeros(n)
@@ -26,7 +27,3 @@ plt.legend()
 plt.xlabel("Array Length")
 plt.ylabel("Time")
 plt.savefig("Numpy_Random_comparison")
-
-
-
-

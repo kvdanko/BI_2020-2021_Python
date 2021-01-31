@@ -1,6 +1,5 @@
 import random
 import time
-from statistics import mean, variance
 
 import matplotlib.pyplot as plt
 import numpy as np

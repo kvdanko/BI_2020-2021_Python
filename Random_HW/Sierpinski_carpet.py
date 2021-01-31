@@ -1,15 +1,15 @@
 import random
 
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
 
 # 8 points of square
 corner = [(0, 0), (0.5, 0), (1, 0), (0, 0.5),
           (0, 1), (1, 0.5), (1, 1), (0.5, 1)]
 
 n = 100000
-x = numpy.zeros(n)
-y = numpy.zeros(n)
+x = np.zeros(n)
+y = np.zeros(n)
 
 # Estimation of one third of the distance
 

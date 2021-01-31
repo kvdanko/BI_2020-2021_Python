@@ -1,6 +1,9 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 n = 10000
-x = numpy.zeros(n)
-y = numpy.zeros(n)
+x = np.zeros(n)
+y = np.zeros(n)
 
 # Filling array with coordinates
 for i in range(1, n):

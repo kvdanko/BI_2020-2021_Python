@@ -1,5 +1,4 @@
 from Bio import SeqIO
-from Bio.Seq import Seq
 
 # Path to .fasta file
 fasta_path = "/path/to/sample.fasta"

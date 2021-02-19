@@ -5,7 +5,8 @@ from Bio.Seq import Seq
 fasta_path = "/home/katerina/sample.fasta"
 
 
-# Extraction of sequences and their length from fasta file
+# Function for extraction of nucleotide sequences from fasta file and
+# their translation into protein sequence
 def translation(path_to_fasta, codon_table='Standard'):
     fasta_dict = SeqIO.to_dict(SeqIO.parse(path_to_fasta, "fasta"))
     for SeqRecord in fasta_dict.values():

@@ -2,7 +2,7 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 
 # Path to .fasta file
-fasta_path = "/home/katerina/sample.fasta"
+fasta_path = "/path/to/sample.fasta"
 
 
 # Function for extraction of nucleotide sequences from fasta file and

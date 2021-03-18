@@ -1,6 +1,6 @@
 class Rna:
 
-    def __init__(self, seq="AGUC"):
+    def __init__(self, seq):
         self.seq = seq
         if "T" in self.seq:
             raise Exception("Rna sequence can not contain Thymine")
@@ -9,11 +9,8 @@ class Rna:
         return "Sequence of transcript is " + self.seq
 
     def gc_content(self):
-        count = 0
-        for n in self.seq:
-            if n == "C" or n == "G":
-                count += 1
-        return f"GC-content is {count / len(self.seq) * 100}%"
+        gc_number = self.seq.count('C') + self.seq.count('G')
+        return f"GC-content is {gc_number/len(self.seq) * 100}%"
 
     def reverse_complement(self):
         complement = {'A': 'U', 'C': 'G', 'G': 'C', 'U': 'A'}
@@ -34,17 +31,14 @@ class Rna:
 
 class Dna:
 
-    def __init__(self, seq="AGTC"):
+    def __init__(self, seq):
         self.seq = seq
         if "U" in self.seq:
             raise Exception("Dna sequence can not contain Uracil")
 
     def gc_content(self):
-        count = 0
-        for n in self.seq:
-            if n == "C" or n == "G":
-                count += 1
-        return f"GC-content is {count / len(self.seq) * 100}%"
+        gc_number = self.seq.count('C') + self.seq.count('G')
+        return f"GC-content is {gc_number/len(self.seq) * 100}%"
 
     def reverse_complement(self):
         complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}

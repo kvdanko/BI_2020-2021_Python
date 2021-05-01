@@ -4,7 +4,7 @@ from HW_classes import Rna, Dna
 
 
 # Tests for Rna class
-class RnaClassInitialization(unittest.TestCase):
+class RnaClassInitializationTest(unittest.TestCase):
 
     def test_initialization(self):
         self.assertIsInstance(Rna("AUGC"), Rna)
@@ -25,7 +25,7 @@ class RnaClassInitialization(unittest.TestCase):
             "Rna sequence is empty")
 
 
-class RnaClassGCcontent(unittest.TestCase):
+class RnaClassGCcontentTest(unittest.TestCase):
     seq_rna = 'AU' * 10 + 'GC' * 40
 
     def test_gc(self):
@@ -34,7 +34,7 @@ class RnaClassGCcontent(unittest.TestCase):
             "GC-content is 80.0%")
 
 
-class RnaClassReverseComplement(unittest.TestCase):
+class RnaClassReverseComplementTest(unittest.TestCase):
     seq_rna = "AGAUACACA"
 
     def test_reverse_complement_function(self):
@@ -42,7 +42,7 @@ class RnaClassReverseComplement(unittest.TestCase):
                          "Complementary sequence is UGUGUAUCU")
 
 
-class RnaClassIterator(unittest.TestCase):
+class RnaClassIteratorTest(unittest.TestCase):
     seq_rna = "AGAUACACA"
 
     def test_iter_function(self):
@@ -50,7 +50,7 @@ class RnaClassIterator(unittest.TestCase):
         self.assertIsInstance(Rna(self.seq_rna), Iterator)
 
 
-class RnaClassEqHash(unittest.TestCase):
+class RnaClassEqHashTest(unittest.TestCase):
     seq1_rna = "AGAUACACA"
     seq2_rna = "AGAUACACA"
     seq3_rna_fail = "AGAUACCCC"
@@ -64,7 +64,7 @@ class RnaClassEqHash(unittest.TestCase):
 
 
 # Tests for Dna class
-class DnaClassInitialization(unittest.TestCase):
+class DnaClassInitializationTest(unittest.TestCase):
 
     def test_initialization_dna(self):
         self.assertIsInstance(Dna("ATGC"), Dna)
@@ -85,7 +85,7 @@ class DnaClassInitialization(unittest.TestCase):
             "Dna sequence is empty")
 
 
-class DnaClassGCcontent(unittest.TestCase):
+class DnaClassGCcontentTest(unittest.TestCase):
     seq_dna = 'AT' * 10 + 'GC' * 40
 
     def test_gc(self):
@@ -94,7 +94,7 @@ class DnaClassGCcontent(unittest.TestCase):
             "GC-content is 80.0%")
 
 
-class DnaClassReverseComplement(unittest.TestCase):
+class DnaClassReverseComplementTest(unittest.TestCase):
     seq_dna = "AGATACACA"
 
     def test_reverse_complement(self):
@@ -103,7 +103,7 @@ class DnaClassReverseComplement(unittest.TestCase):
             "Complementary sequence is TGTGTATCT")
 
 
-class DnaClassTranscribe(unittest.TestCase):
+class DnaClassTranscribeTest(unittest.TestCase):
     seq_dna = "AGATACACA"
 
     def test_transcribe_rna(self):
@@ -112,7 +112,7 @@ class DnaClassTranscribe(unittest.TestCase):
             Rna("UCUAUGUGU"))
 
 
-class DnaClassIterator(unittest.TestCase):
+class DnaClassIteratorTest(unittest.TestCase):
     seq_dna = "AGATACACA"
 
     def test_iter_function(self):
@@ -120,7 +120,7 @@ class DnaClassIterator(unittest.TestCase):
         self.assertIsInstance(Dna(self.seq_dna), Iterator)
 
 
-class DnaClassEqHash(unittest.TestCase):
+class DnaClassEqHashTest(unittest.TestCase):
     seq1_dna = "AGATACACA"
     seq2_dna = "AGATACACA"
     seq3_dna_fail = "AGATACCCC"

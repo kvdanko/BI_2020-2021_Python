@@ -1,26 +1,27 @@
 import unittest
-import HW_classes
+from collections.abc import Hashable, Iterable, Iterator
+from HW_classes import Rna, Dna
 
 
 # Tests for Rna class
 class RnaClassInitialization(unittest.TestCase):
 
     def test_initialization(self):
-        self.assertIsInstance(HW_classes.Rna("AUGC"), HW_classes.Rna)
+        self.assertIsInstance(Rna("AUGC"), Rna)
 
     @unittest.expectedFailure
     def test_initialization_fail(self):
         self.assertIsInstance(
-            HW_classes.Rna("ATGC"),
-            HW_classes.Rna,
+            Rna("ATGC"),
+            Rna,
             "Rna sequence can not contain Thymine")
         self.assertIsInstance(
-            HW_classes.Rna("ABCD"),
-            HW_classes.Rna,
+            Rna("ABCD"),
+            Rna,
             "Rna sequence contains unexpected elements")
         self.assertIsInstance(
-            HW_classes.Rna(""),
-            HW_classes.Rna,
+            Rna(""),
+            Rna,
             "Rna sequence is empty")
 
 
@@ -29,8 +30,7 @@ class RnaClassGCcontent(unittest.TestCase):
 
     def test_gc(self):
         self.assertEqual(
-            HW_classes.Rna(
-                self.seq_rna).gc_content(),
+            Rna(self.seq_rna).gc_content(),
             "GC-content is 80.0%")
 
 
@@ -38,67 +38,50 @@ class RnaClassReverseComplement(unittest.TestCase):
     seq_rna = "AGAUACACA"
 
     def test_reverse_complement_function(self):
-        self.assertEqual(
-            HW_classes.Rna(
-                self.seq_rna).reverse_complement(),
-            "Complementary sequence is UGUGUAUCU")
+        self.assertEqual(Rna(self.seq_rna).reverse_complement(),
+                         "Complementary sequence is UGUGUAUCU")
 
 
 class RnaClassIterator(unittest.TestCase):
     seq_rna = "AGAUACACA"
 
     def test_iter_function(self):
-        self.assertListEqual([i for i in HW_classes.Rna(self.seq_rna)], [
-                             i for i in self.seq_rna])
+        self.assertIsInstance(Rna(self.seq_rna), Iterable)
+        self.assertIsInstance(Rna(self.seq_rna), Iterator)
 
 
 class RnaClassEqHash(unittest.TestCase):
     seq1_rna = "AGAUACACA"
     seq2_rna = "AGAUACACA"
-    seq3_rna_fail = "AGAUACCCС"
+    seq3_rna_fail = "AGAUACCCC"
 
     def test_eq_function(self):
-        self.assertEqual(
-            HW_classes.Rna(
-                self.seq1_rna) == HW_classes.Rna(
-                self.seq2_rna),
-            self.seq1_rna == self.seq2_rna)
-
-    @unittest.expectedFailure
-    def test_eq_functions_fail(self):
-        self.assertEqual(
-            HW_classes.Rna(
-                self.seq1_rna) != HW_classes.Rna(
-                self.seq3_rna_fail),
-            self.seq1_rna == self.seq3_rna_fail)
+        self.assertTrue(Rna(self.seq1_rna) == Rna(self.seq2_rna))
+        self.assertFalse(Rna(self.seq1_rna) == Rna(self.seq3_rna_fail))
 
     def test_hash_function(self):
-        self.assertEqual(
-            hash(
-                HW_classes.Rna(
-                    self.seq1_rna)), hash(
-                self.seq1_rna))
+        self.assertIsInstance(Rna(self.seq1_rna), Hashable)
 
 
 # Tests for Dna class
 class DnaClassInitialization(unittest.TestCase):
 
     def test_initialization_dna(self):
-        self.assertIsInstance(HW_classes.Dna("ATGC"), HW_classes.Dna)
+        self.assertIsInstance(Dna("ATGC"), Dna)
 
     @unittest.expectedFailure
     def test_initialization_dna_fail(self):
         self.assertIsInstance(
-            HW_classes.Dna("AUGC"),
-            HW_classes.Dna,
+            Dna("AUGC"),
+            Dna,
             "Dna sequence can not contain Uracil")
         self.assertIsInstance(
-            HW_classes.Rna("ABCD"),
-            HW_classes.Rna,
+            Rna("ABCD"),
+            Rna,
             "Dna sequence contains unexpected elements")
         self.assertIsInstance(
-            HW_classes.Dna(""),
-            HW_classes.Dna,
+            Dna(""),
+            Dna,
             "Dna sequence is empty")
 
 
@@ -107,8 +90,7 @@ class DnaClassGCcontent(unittest.TestCase):
 
     def test_gc(self):
         self.assertEqual(
-            HW_classes.Dna(
-                self.seq_dna).gc_content(),
+            Dna(self.seq_dna).gc_content(),
             "GC-content is 80.0%")
 
 
@@ -117,8 +99,7 @@ class DnaClassReverseComplement(unittest.TestCase):
 
     def test_reverse_complement(self):
         self.assertEqual(
-            HW_classes.Dna(
-                self.seq_dna).reverse_complement(),
+            Dna(self.seq_dna).reverse_complement(),
             "Complementary sequence is TGTGTATCT")
 
 
@@ -127,17 +108,16 @@ class DnaClassTranscribe(unittest.TestCase):
 
     def test_transcribe_rna(self):
         self.assertEqual(
-            HW_classes.Dna(
-                self.seq_dna).transcribe(),
-            HW_classes.Rna("UCUAUGUGU"))
+            Dna(self.seq_dna).transcribe(),
+            Rna("UCUAUGUGU"))
 
 
 class DnaClassIterator(unittest.TestCase):
     seq_dna = "AGATACACA"
 
     def test_iter_function(self):
-        self.assertListEqual([i for i in HW_classes.Dna(self.seq_dna)], [
-                             i for i in self.seq_dna])
+        self.assertIsInstance(Dna(self.seq_dna), Iterable)
+        self.assertIsInstance(Dna(self.seq_dna), Iterator)
 
 
 class DnaClassEqHash(unittest.TestCase):
@@ -146,26 +126,11 @@ class DnaClassEqHash(unittest.TestCase):
     seq3_dna_fail = "AGATACCCC"
 
     def test_eq_function(self):
-        self.assertEqual(
-            HW_classes.Dna(
-                self.seq1_dna) == HW_classes.Dna(
-                self.seq2_dna),
-            self.seq1_dna == self.seq2_dna)
-
-    @unittest.expectedFailure
-    def test_eq_functions_fail(self):
-        self.assertEqual(
-            HW_classes.Dna(
-                self.seq1_dna) != HW_classes.Dna(
-                self.seq3_dna_fail),
-            self.seq1_dna == self.seq3_dna_fail)
+        self.assertTrue(Dna(self.seq1_dna) == Dna(self.seq2_dna))
+        self.assertFalse(Dna(self.seq1_dna) == Dna(self.seq3_dna_fail))
 
     def test_hash_function(self):
-        self.assertEqual(
-            hash(
-                HW_classes.Dna(
-                    self.seq1_dna)), hash(
-                self.seq1_dna))
+        self.assertIsInstance(Dna(self.seq1_dna), Hashable)
 
 
 if __name__ == '__main__':
